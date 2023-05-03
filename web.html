@@ -3,21 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <title>网站收藏夹</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(to bottom right, #1a8fff, #45c5c2);
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;  
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 8rem;
+            color: #fff;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: auto;
+            margin-top: 4rem;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .form-container input {
+            width: 80%;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .form-container button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #1a8fff;
+            color: #fff;
+        }
+
+        .site-list-container {
+            margin-top: 3rem;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .site-list-container h2 {
+            font-weight: normal;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .site-list-container ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-list-container li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .site-list-container li:last-child {
+            border-bottom: none;
+        }
+
+        .site-list-container li a {
+            color: #1a8fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .site-list-container li a:hover {
+            text-decoration: underline;
+        }
+
+        .site-list-container li button {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #ff0000;
+            color: #fff;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .site-list-container li button:hover {
+            background-color: #a60000;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                width: 80%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>网站收藏夹</h1>
-    
-    <form>
-        <label>网站名称:</label>
-        <input type="text" id="site-name" name="site-name" required>
+    <div class="container">
+        <div class="header">
+            <h1>网站收藏夹</h1>
+        </div>
         
-        <label>网站链接:</label>
-        <input type="url" id="site-url" name="site-url" required>
+        <div class="form-container">
+            <h2>添加网站</h2>
+            <form>
+                <label for="site-name">网站名称:</label>
+                <input type="text" id="site-name" name="site-name" required>
+                
+                <label for="site-url">网站链接:</label>
+                <input type="url" id="site-url" name="site-url" required>
+                
+                <button type="button" onclick="addSite()">添加</button>
+            </form>
+        </div>
         
-        <button type="button" onclick="addSite()">添加</button>
-    </form>
-    
-    <ul id="site-list"></ul>
+        <div class="site-list-container">
+            <h2>网站列表</h2>
+            <ul id="site-list"></ul>
+        </div>
+    </div>
 
     <script>
         // 存储所有的网站
@@ -26,43 +165,43 @@
         // 添加网站，并更新列表
         function addSite() {
             const siteName = document.getElementById("site-name").value;
+            const site
             const siteUrl = document.getElementById("site-url").value;
 
-            sites.push({name: siteName, url: siteUrl});
+        sites.push({name: siteName, url: siteUrl});
 
-            updateSiteList();
+        updateSiteList();
+    }
+
+    // 删除网站，并更新列表
+    function deleteSite(index) {
+        sites.splice(index, 1);
+
+        updateSiteList();
+    }
+
+    // 更新网站列表
+    function updateSiteList() {
+        const siteListElement = document.getElementById("site-list");
+        siteListElement.innerHTML = "";
+
+        for (let i = 0; i < sites.length; i++) {
+            const site = sites[i];
+            const liElement = document.createElement("li");
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "删除";
+            deleteButton.onclick = (function(i) {
+                return function() {
+                    deleteSite(i);
+                }
+            })(i);
+            const linkElement = document.createElement("a");
+            linkElement.href = site.url;
+            linkElement.textContent = site.name;
+            liElement.appendChild(linkElement);
+            liElement.appendChild(deleteButton);
+            siteListElement.appendChild(liElement);
         }
-
-        // 删除网站，并更新列表
-        function deleteSite(index) {
-            sites.splice(index, 1);
-
-            updateSiteList();
-        }
-
-        // 更新网站列表
-        function updateSiteList() {
-            const siteListElement = document.getElementById("site-list");
-            siteListElement.innerHTML = "";
-
-            for (let i = 0; i < sites.length; i++) {
-                const site = sites[i];
-                const liElement = document.createElement("li");
-                const deleteButton = document.createElement("button");
-                deleteButton.textContent = "删除";
-                deleteButton.onclick = (function(i) {
-                    return function() {
-                        deleteSite(i);
-                    }
-                })(i);
-                const linkElement = document.createElement("a");
-                linkElement.href = site.url;
-                linkElement.textContent = site.name;
-                liElement.appendChild(linkElement);
-                liElement.appendChild(deleteButton);
-                siteListElement.appendChild(liElement);
-            }
-        }
-    </script>
-</body>
-</html>
+    }
+</script>
+</body> </html>
