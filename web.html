@@ -1,207 +1,240 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>网站收藏夹</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-image: linear-gradient(to bottom right, #1a8fff, #45c5c2);
-        }
+  <title>我的收藏夹</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* 全局样式 */
+    * {
+      box-sizing: border-box;
+    }
 
-        .container {
-            width: 80%;
-            margin: auto;  
-        }
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        .header {
-            text-align: center;
-            margin-top: 8rem;
-            color: #fff;
-        }
+    h1 {
+      color: #333;
+      font-size: 36px;
+      text-align: center;
+      margin-top: 50px;
+    }
 
-        .form-container {
-            width: 50%;
-            margin: auto;
-            margin-top: 4rem;
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 1.5rem;
-        }
+    /* 添加书签表单样式 */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
 
-        .form-container h2 {
-            text-align: center;
-            font-weight: normal;
-        }
+    fieldset {
+      border: none;
+      margin: 0;
+      padding: 0;
+    }
 
-        .form-container form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 1.5rem;
-        }
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .form-container label {
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 1rem;
-        }
+    button[type="submit"] {
+      background-color: #0077cc;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+    }
 
-        .form-container input {
-            width: 80%;
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-            font-size: 1rem;
-        }
+    button[type="submit"]:hover {
+      background-color: #005fa3;
+    }
 
-        .form-container button {
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            background-color: #1a8fff;
-            color: #fff;
-        }
+    /* 书签列表样式 */
+    .bookmark-list {
+      margin-top: 50px;
+      list-style: none;
+      padding: 0;
+    }
 
-        .site-list-container {
-            margin-top: 3rem;
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 1.5rem;
-        }
+    .bookmark-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+    }
 
-        .site-list-container h2 {
-            font-weight: normal;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
+    .bookmark-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-        .site-list-container ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+    .bookmark-link {
+      color: #333;
+      text-decoration: none;
+    }
 
-        .site-list-container li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #ddd;
-        }
+    .bookmark-icon {
+      font-size: 18px;
+      color: #999;
+      margin-right: 10px;
+    }
 
-        .site-list-container li:last-child {
-            border-bottom: none;
-        }
+    .delete-button {
+      border: none;
+      background-color: transparent;
+      font-size: 16px;
+      color: #999;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+    }
 
-        .site-list-container li a {
-            color: #1a8fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
+    .delete-button:hover {
+      color: #ff6b6b;
+    }
 
-        .site-list-container li a:hover {
-            text-decoration: underline;
-        }
+    /* 登陆注册样式 */
+    form.login-form input[type="email"],
+    form.login-form input[type="password"],
+    form.register-form input[type="text"],
+    form.register-form input[type="email"],
+    form.register-form input[type="password"] {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .site-list-container li button {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            background-color: #ff0000;
-            color: #fff;
-            transition: background-color 0.2s ease-in-out;
-        }
+    button[type="button"] {
+      background-color: #333;
+      border: none;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+    }
 
-        .site-list-container li button:hover {
-            background-color: #a60000;
-        }
+    button[type="button"]:hover {
+      background-color: black;
+    }
 
-        @media (max-width: 768px) {
-            .form-container {
-                width: 80%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>网站收藏夹</h1>
-        </div>
-        
-        <div class="form-container">
-            <h2>添加网站</h2>
-            <form>
-                <label for="site-name">网站名称:</label>
-                <input type="text" id="site-name" name="site-name" required>
-                
-                <label for="site-url">网站链接:</label>
-                <input type="url" id="site-url" name="site-url" required>
-                
-                <button type="button" onclick="addSite()">添加</button>
-            </form>
-        </div>
-        
-        <div class="site-list-container">
-            <h2>网站列表</h2>
-            <ul id="site-list"></ul>
-        </div>
-    </div>
+    /* 模态框样式 */
+    .modal {
+      display: none; /* 隐藏模态框 */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
 
-    <script>
-        // 存储所有的网站
-        let sites = [];
+    .modal-content {
+      background-color: #fefefe;
+      margin: 12% auto;
+      border: 1px solid #888;
+      width: 80%;
+      border-radius: 5px;
+      padding: 20px;
+    }
 
-        // 添加网站，并更新列表
-        function addSite() {
-            const siteName = document.getElementById("site-name").value;
-            const site
-            const siteUrl = document.getElementById("site-url").value;
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-            sites.push({name: siteName, url: siteUrl});
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-            updateSiteList();
-        }
+    .clear-button {
+      border: none;
+      background-color: transparent;
+      color: #0077cc;
+      font-size: 14px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+    }
 
-        // 删除网站，并更新列表
-        function deleteSite(index) {
-            sites.splice(index, 1);
+    .clear-button:hover {
+      text-decoration: underline;
+    }
 
-            updateSiteList();
-        }
+    /* 登陆注册模态框样式 */
+    form.login-form,
+    form.register-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-        // 更新网站列表
-        function updateSiteList() {
-            const siteListElement = document.getElementById("site-list");
-            siteListElement.innerHTML = "";
+    .form-title {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
 
-            for (let i = 0; i < sites.length; i++) {
-                const site = sites[i];
-                const liElement = document.createElement("li");
-                const deleteButton = document.createElement("button");
-                deleteButton.textContent = "删除";
-                deleteButton.onclick = (function(i) {
-                    return function() {
-                        deleteSite(i);
-                    }
-                })(i);
-                const linkElement = document.createElement("a");
-                linkElement.href = site.url;
-                linkElement.textContent = site.name;
-                liElement.appendChild(linkElement);
-                liElement.appendChild(deleteButton);
-                siteListElement.appendChild(liElement);
-            }
-        }
-    </script>
-</body> </html>
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1), 0px 0px 4px rgba(0, 119, 204, 0.4);
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .success-message {
+      color: green;
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .login-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #0077cc;
+      text-decoration: none;
+      cursor: pointer;
+      transition
