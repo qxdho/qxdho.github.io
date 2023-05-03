@@ -1,47 +1,68 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>My Favorites</title>
-  <style>
-    body {
-      background-color: #eaeaea;
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-    }
-    h1 {
-      color: #444444;
-      text-align: center;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    li {
-      background-color: #ffffff;
-      border-radius: 5px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 10px;
-      padding: 10px;
-    }
-    li a {
-      color: #444444;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    li a:hover {
-      color: #ff6600;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>网站收藏夹</title>
 </head>
 <body>
-  <h1>My Favorites</h1>
-  <ul>
-    <li><a href="https://www.google.com/">Google</a></li>
-    <li><a href="https://www.facebook.com/">Facebook</a></li>
-    <li><a href="https://www.youtube.com/">YouTube</a></li>
-    <li><a href="https://github.com">GitHub</a></li>
-  </ul>
+    <h1>网站收藏夹</h1>
+    
+    <form>
+        <label>网站名称:</label>
+        <input type="text" id="site-name" name="site-name" required>
+        
+        <label>网站链接:</label>
+        <input type="url" id="site-url" name="site-url" required>
+        
+        <button type="button" onclick="addSite()">添加</button>
+    </form>
+    
+    <ul id="site-list"></ul>
+
+    <script>
+        // 存储所有的网站
+        let sites = [];
+
+        // 添加网站，并更新列表
+        function addSite() {
+            const siteName = document.getElementById("site-name").value;
+            const siteUrl = document.getElementById("site-url").value;
+
+            sites.push({name: siteName, url: siteUrl});
+
+            updateSiteList();
+        }
+
+        // 删除网站，并更新列表
+        function deleteSite(index) {
+            sites.splice(index, 1);
+
+            updateSiteList();
+        }
+
+        // 更新网站列表
+        function updateSiteList() {
+            const siteListElement = document.getElementById("site-list");
+            siteListElement.innerHTML = "";
+
+            for (let i = 0; i < sites.length; i++) {
+                const site = sites[i];
+                const liElement = document.createElement("li");
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "删除";
+                deleteButton.onclick = (function(i) {
+                    return function() {
+                        deleteSite(i);
+                    }
+                })(i);
+                const linkElement = document.createElement("a");
+                linkElement.href = site.url;
+                linkElement.textContent = site.name;
+                liElement.appendChild(linkElement);
+                liElement.appendChild(deleteButton);
+                siteListElement.appendChild(liElement);
+            }
+        }
+    </script>
 </body>
 </html>
