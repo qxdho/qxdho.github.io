@@ -168,40 +168,40 @@
             const site
             const siteUrl = document.getElementById("site-url").value;
 
-        sites.push({name: siteName, url: siteUrl});
+            sites.push({name: siteName, url: siteUrl});
 
-        updateSiteList();
-    }
-
-    // 删除网站，并更新列表
-    function deleteSite(index) {
-        sites.splice(index, 1);
-
-        updateSiteList();
-    }
-
-    // 更新网站列表
-    function updateSiteList() {
-        const siteListElement = document.getElementById("site-list");
-        siteListElement.innerHTML = "";
-
-        for (let i = 0; i < sites.length; i++) {
-            const site = sites[i];
-            const liElement = document.createElement("li");
-            const deleteButton = document.createElement("button");
-            deleteButton.textContent = "删除";
-            deleteButton.onclick = (function(i) {
-                return function() {
-                    deleteSite(i);
-                }
-            })(i);
-            const linkElement = document.createElement("a");
-            linkElement.href = site.url;
-            linkElement.textContent = site.name;
-            liElement.appendChild(linkElement);
-            liElement.appendChild(deleteButton);
-            siteListElement.appendChild(liElement);
+            updateSiteList();
         }
-    }
-</script>
+
+        // 删除网站，并更新列表
+        function deleteSite(index) {
+            sites.splice(index, 1);
+
+            updateSiteList();
+        }
+
+        // 更新网站列表
+        function updateSiteList() {
+            const siteListElement = document.getElementById("site-list");
+            siteListElement.innerHTML = "";
+
+            for (let i = 0; i < sites.length; i++) {
+                const site = sites[i];
+                const liElement = document.createElement("li");
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "删除";
+                deleteButton.onclick = (function(i) {
+                    return function() {
+                        deleteSite(i);
+                    }
+                })(i);
+                const linkElement = document.createElement("a");
+                linkElement.href = site.url;
+                linkElement.textContent = site.name;
+                liElement.appendChild(linkElement);
+                liElement.appendChild(deleteButton);
+                siteListElement.appendChild(liElement);
+            }
+        }
+    </script>
 </body> </html>
