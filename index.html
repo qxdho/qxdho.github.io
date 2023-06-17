@@ -4,60 +4,97 @@
 <head>
   <title>qxdho的主页</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <style>
+    .button {
+      background-color: #94df62;
+      /* Green */
+      border: none;
+      color: #000000, 0, 0;
+      padding: 5px 12px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 13px;
+      margin: 4px 2px;
+      cursor: pointer;
+      -webkit-transition-duration: 0.2s;
+      /* Safari */
+      transition-duration: 0.2s;
+    }
+
+    .button1:hover {
+      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .button2:visited {
+      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+  </style>
+
+  <script>
+    Date.prototype.format = function (fmt) {
+      var o = {
+        "y+": this.getFullYear, //年
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds() //秒
+      };
+      if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+      for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      return fmt;
+    }
+    setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');", 1000);
+  </script>
+
+  <style type="text/css">
+    form {
+      text-align: center;
+    }
+
+    form .text {
+      display: inline-block;
+      border: 0;
+      width: 260px;
+      height: 35px;
+      font-size: 14px;
+      outline: none;
+      border: 2px solid #01af63;
+    }
+
+    form .search {
+      width: 90px;
+      height: 38px;
+      border: 2px solid #01af63;
+      outline: none;
+      cursor: pointer;
+      text-align: center;
+      background-color: #01af63;
+      color: #FFFFFF;
+    }
+  </style>
+
 </head>
 
 <body style="background-color:#ffffaa">
 
   <center>
-    <h1>谦虚的海鸥的主页</h1>
+    <a class="button2" target="_blank" href="https://qxdxho.github.io"><h1>谦虚的海鸥的主页</h1></a>
     <p>更新时间：2023年6月14日 15:40</p>
-    <script>
-      Date.prototype.format = function (fmt) {
-        var o = {
-          "y+": this.getFullYear, //年
-          "M+": this.getMonth() + 1, //月份
-          "d+": this.getDate(), //日
-          "h+": this.getHours(), //小时
-          "m+": this.getMinutes(), //分
-          "s+": this.getSeconds() //秒
-        };
-        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var k in o)
-          if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        return fmt;
-      }
-      setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');", 1000);
-    </script>
 
     <div id="dateTime"></div>
     </div>
 
-    <style>
-      .button {
-        background-color: #d2e94e;
-        /* Green */
-        border: none;
-        color: #000000, 0, 0;
-        padding: 5px 12px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 5px;
-        margin: 4px 2px;
-        cursor: pointer;
-        -webkit-transition-duration: 0.2s;
-        /* Safari */
-        transition-duration: 0.2s;
-      }
+    <form target="_blank" method="get" action="https://www.baidu.com/s">
+      <input type="text" placeholder="请输入关键词" name="word" class="text" />
+      <input type="submit" value="搜索" class="search">
+    </form>
 
-      .button1:hover {
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-      }
-    </style>
-
-    <table border="1">
+    <table border="1" width="80%">
       <tr align="center">
-        <td width="30%">
+        <td width="33%">
           <h2>常用网址</h2>
         </td>
         <td>
@@ -70,23 +107,18 @@
       <tr align="left">
         <td>
           <ol>
-            <li><a target=_blank href="https://sunlogin.oray.com/share?shareid=1216329555">远程控制（win10新）</a></li>
-            <li><a target=_blank href="https://sunlogin.oray.com/share?shareid=1155820655">远程控制（win10旧）</a></li>
-            <li><a target=_blank href="https://sunlogin.oray.com/share?shareid=1205820931">远程控制（win11）</a></li>
+            <li><a target=_blank href="https://sunlogin.oray.com/share?shareid=1216329555"><button class="button button1">远程控制win10</button></a></li>
+            <li><a target=_blank href="https://vscode.dev/tunnel/qxdho"><button class="button button1">远程隧道连接</button></a></li>
           </ol>
         </td>
         <td>
           <ol>
-            <li>
-              <a href="https://www.baidu.com/">
-                <button class="button button1">百度</button>
-              </a>
-            </li>
+            <li><a target=_blank href="https://www.baidu.com/"><button class="button button1">百度</button></a></li>
           </ol>
         </td>
         <td>
           <ol>
-            <li><a target=_blank href="https://www.123pan.com/s/npE7Vv-g547.html">下载中心</a></li>
+            <li><a target=_blank href="https://www.123pan.com/s/npE7Vv-g547.html"><button class="button button1">下载中心</button></a></li>
           </ol>
         </td>
       </tr>
