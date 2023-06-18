@@ -43,7 +43,7 @@
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
       return fmt;
     }
-    setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');", 1000);
+    setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');");
   </script>
 
   <style type="text/css">
@@ -52,14 +52,32 @@
     }
 
     form .text {
-      display: inline-block;
       border: 0;
       width: 260px;
       height: 35px;
       font-size: 14px;
       outline: none;
       border: 2px solid #01af63;
+      background-color: #4CAF50;
+      /* Green */
+      color: #01af63;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
     }
+
+    form .text2 {
+      background-color: #4CAF50;
+      color: black;
+      border: 2px solid #297a29;
+    }
+
+    .text2:hover {
+      background-color: white;
+      color: white;
+    }
+
 
     form .search {
       width: 90px;
@@ -84,7 +102,7 @@
     </div>
 
     <form target="_blank" method="get" action="https://www.baidu.com/s">
-      <input type="text" placeholder="请输入关键词" name="word" class="text button1" />
+      <input type="text" placeholder="请输入关键词" name="word" class="text text2" />
       <input type="submit" value="百度搜索" class="search button1">
     </form>
 
