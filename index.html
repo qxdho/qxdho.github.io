@@ -26,6 +26,11 @@
     .button1:hover {
       box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
+
+    .href {
+      text-decoration: none;
+      color: #000000;
+    }
   </style>
 
   <script>
@@ -90,13 +95,17 @@
       color: #FFFFFF;
     }
   </style>
+
 </head>
 
 
 
 <body style="background-color:#ffffaa">
+
   <center>
-    <h1>谦虚的海鸥的主页</h1>
+    <a href="https://qxdho.github.io" class="href">
+      <h1>谦虚的海鸥的主页</h1>
+    </a>
     <p>更新时间：2023年6月14日 15:40</p>
 
     <div id="dateTime"></div>
@@ -105,42 +114,63 @@
       <input type="text" placeholder="请输入关键词" name="word" class="text text2" />
       <input type="submit" value="百度搜索" class="search button1">
     </form>
-
-    <table border="1" width="80%">
-      <tr align="center">
-        <td width="33%">
-          <h2>常用网址</h2>
-        </td>
-        <td>
-          <h2>我的应用</h2>
-        </td>
-        <td>
-          <h2>下载专区</h2>
-        </td>
-      </tr>
-      <tr align="left">
-        <td>
-          <ol>
-            <li><a target=_blank href="https://sunlogin.oray.com/share?shareid=1216329555"><button
-                  class="button button1">远程控制win10</button></a></li>
-            <li><a target=_blank href="https://vscode.dev/tunnel/qxdho"><button
-                  class="button button1">远程隧道连接</button></a></li>
-          </ol>
-        </td>
-        <td>
-          <ol>
-            <li><a target=_blank href="https://www.baidu.com/"><button class="button button1">百度</button></a></li>
-          </ol>
-        </td>
-        <td>
-          <ol>
-            <li><a target=_blank href="https://www.123pan.com/s/npE7Vv-g547.html"><button
-                  class="button button1">下载中心</button></a></li>
-          </ol>
-        </td>
-      </tr>
-    </table>
   </center>
+
+  <table border="0" align="center" width="80%">
+    <tr valign="top">
+      <td width="33%">
+        <center>
+          <h2>常用网址</h2>
+        </center>
+        <ol>
+          <li>
+            <a target=_blank href="https://sunlogin.oray.com/share?shareid=1216329555">
+              <button class="button button1">远程控制win10</button>
+          </li>
+          <li>
+            <a target=_blank href="https://vscode.dev/tunnel/qxdho">
+              <button class="button button1">远程隧道连接</button>
+            </a>
+          </li>
+          <li>
+            <a target=_blank href="https://w3school.com.cn">
+              <button class="button button1">w3school</button>
+            </a>
+          </li>
+          <li>
+            <a target=_blank href="https://github.com">
+              <button class="button button1">github</button>
+            </a>
+          </li>
+        </ol>
+      </td>
+
+      <td width="33%">
+        <center>
+          <h2>我的应用</h2>
+        </center>
+        <ol>
+          <li>
+            <a target=_blank href="https://www.baidu.com/">
+              <button class="button button1">百度</button>
+            </a>
+          </li>
+        </ol>
+      </td>
+
+      <td width="33%">
+        <center>
+          <h2>下载专区</h2>
+        </center>
+        <ol>
+          <li>
+            <a target=_blank href="https://www.123pan.com/s/npE7Vv-g547.html">
+              <button class="button button1">下载中心</button>
+            </a>
+          </li>
+        </ol>
+      </td>
+    </tr>
 
 </body>
 
