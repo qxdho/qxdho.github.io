@@ -5,103 +5,46 @@
   <title>qxdho的主页</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-  <style>
-    .button {
-      background-color: #94df62;
-      /* Green */
-      border: none;
-      color: #000000, 0, 0;
-      padding: 5px 12px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 13px;
-      margin: 4px 2px;
-      cursor: pointer;
-      -webkit-transition-duration: 0.2s;
-      /* Safari */
-      transition-duration: 0.2s;
-    }
-
-    .button1:hover {
-      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .href {
-      text-decoration: none;
-      color: #000000;
-    }
-  </style>
-
-  <script>
-    Date.prototype.format = function (fmt) {
-      var o = {
-        "y+": this.getFullYear, //年
-        "M+": this.getMonth() + 1, //月份
-        "d+": this.getDate(), //日
-        "h+": this.getHours(), //小时
-        "m+": this.getMinutes(), //分
-        "s+": this.getSeconds() //秒
-      };
-      if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-      for (var k in o)
-        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-      return fmt;
-    }
-    setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');");
-  </script>
-
-  <style type="text/css">
-    form {
-      text-align: center;
-    }
-
-    form .text {
-      border: 0;
-      width: 260px;
-      height: 35px;
-      font-size: 14px;
-      outline: none;
-      border: 2px solid #01af63;
-      background-color: #4CAF50;
-      /* Green */
-      color: #01af63;
-      text-decoration: none;
-      display: inline-block;
-      margin: 4px 2px;
-      transition-duration: 0.4s;
-    }
-
-    form .text2 {
-      background-color: #7fda82;
-      color: #000000;
-      border: 2px solid #3e943e;
-    }
-
-    .text2:hover {
-      background-color: white;
-      color: #000000;
-    }
-
-
-    form .search {
-      width: 90px;
-      height: 38px;
-      border: 2px solid #01af63;
-      outline: none;
-      cursor: pointer;
-      text-align: center;
-      background-color: #01af63;
-      color: #FFFFFF;
-    }
-  </style>
+  <link rel="shortcut icon" href="styles/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="styles/button.css">
+  <link rel="stylesheet" type="text/css" href="styles/search.css">
+  <!--link rel="stylesheet" type="text/css" href="styles/loading.css"-->
+  <link rel="stylesheet" href="styles/animation.css" media="print" onload="this.media='all';this.onload=null">
+  <script type="text/javascript" src="styles/time.js"></script>
 
 </head>
 
 
 
-<body style="background-color:#ffffaa">
+<body style="background-color:#ffffaa; margin: 0; border: 0; padding: 0;">
+  <!--加载动画-->
+  <div id="loading-box" class='FadeOutFrame fadeout'>
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+      <div class="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+      </div>
+      <div class="loading-word">
+        <p class="loading-title">無名小栈</p>Loading...<br>
+        <a id="skip"></a>
+      </div>
+    </div>
+  </div>
+  <!--加载动画结束-->
 
+  <script type="text/javascript" src="styles/loading.js"></script>
+
+  <script type="text/javascript">
+    //load();
+    setTimeout(function () {
+      var obj = document.getElementById('loading-box');
+      obj.setAttribute('style', 'display: none');
+    }, 5000);
+  </script>
+  <div>&nbsp;</div>
   <center>
     <a href="https://qxdho.github.io" class="href">
       <h1>谦虚的海鸥的主页</h1>

@@ -1,0 +1,42 @@
+form {
+    text-align: center;
+}
+
+form .text {
+    border: 0;
+    width: 260px;
+    height: 35px;
+    font-size: 14px;
+    outline: none;
+    border: 2px solid #01af63;
+    background-color: #4CAF50;
+    /* Green */
+    color: #01af63;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+}
+
+form .text2 {
+    background-color: #7fda82;
+    color: #000000;
+    border: 2px solid #3e943e;
+}
+
+.text2:hover {
+    background-color: white;
+    color: #000000;
+}
+
+
+form .search {
+    width: 90px;
+    height: 38px;
+    border: 2px solid #01af63;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    background-color: #01af63;
+    color: #FFFFFF;
+}
