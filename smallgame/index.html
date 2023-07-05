@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>smallgame</title>
+	<style type="text/css" media="screen">
+		#msg {
+			width: 100%;
+			text-align: right;
+		}
+
+		#man {
+			position: absolute;
+			top: 100px;
+			left: 100px;
+			width: 50px;
+			/*
+				height: 50px;
+				border-radius: 15px;
+				*/
+			text-align: center;
+			padding: 20px 0;
+		}
+	</style>
+</head>
+
+<body onkeydown='keyup(event)' style="background-color:#000000">
+	<div id='msg'>
+	</div>
+	<div id='man'>
+		<img src="matchmaker.png">
+	</div>
+</body>
+<script charset="utf-8">
+	function getStyle(obj, name) {
+		if (window.getComputedStyle) {
+			return getComputedStyle(obj, null)[name];
+		}
+		else {
+			return obj.currentStyle[name];
+		}
+	}
+
+	function keyup(event) {
+		var man = document.getElementById('man');
+		var msg = document.getElementById('msg');
+		var x = parseInt(getStyle(man, 'left'));
+		var y = parseInt(getStyle(man, 'top'));
+		var s = "(" + x + ", " + y + ")" + " --> ";
+		//alert (event.keyCode);
+		switch (event.keyCode) {
+			case 37: // 左箭头
+				x += -10;
+				break;
+			case 38: // 上箭头
+				y += -10;
+				break;
+			case 39: // 右箭头
+				x += 10;
+				break;
+			case 40: // 下箭头
+				y += 10;
+				break;
+			default:
+		}
+
+		s += "(" + x + ", " + y + ")";
+		man.style.left = x + 'px';
+		man.style.top = y + 'px';
+		msg.innerHTML = s;
+	}
+</script>
+
+</html>
